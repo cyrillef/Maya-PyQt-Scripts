@@ -1,5 +1,5 @@
 @echo off
-IF NOT "%CYRILLE%" == "OK", call "E:\__sdkext\_Maya2013 Scripts\build setup.bat"
+IF NOT "%CYRILLE%" == "OK", call "E:\__sdkext\build setup.bat"
 
 rem ------------------------------------------------
 rem Building PySide
