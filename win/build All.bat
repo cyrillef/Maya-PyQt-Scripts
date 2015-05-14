@@ -1,5 +1,10 @@
 @echo off
-call "E:\__sdkext\_Maya2013-5 Scripts\build setup.bat"
+%~d0
+cd /d %~dp0..
+
+call "build setup.bat"
 call "build Qt.bat"
 call "build SIP.bat"
 call "build PyQt.bat"
+
+pause
