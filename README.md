@@ -2,7 +2,7 @@
 Scripts to easily build PyQt for Maya
 
 These are the scripts used for building Qt, PyQt and PySide for Maya 2013.
-You can find more explanations on the blog at:
+You can find more explanations about building PyQt and PySide and instructions about using these scripts on the blog at:
 
 http://around-the-corner.typepad.com/adn/2012/10/building-qt-pyqt-pyside-for-maya-2013.html
 
@@ -10,6 +10,9 @@ and
 
 http://around-the-corner.typepad.com/adn/2012/10/building-qt-pyqt-pyside-for-maya-2013-part-2.html
 
+
+<br />
+<br />
 
 --------
 
