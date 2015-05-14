@@ -5,7 +5,7 @@ export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normaliz
 pushd $MAYAQTBUILD
  
 export SIPDIR=$MAYAQTBUILD/sip-4.14.5
-export MAYA_LOCATION=/usr/autodesk/maya2014-x64
+export MAYA_LOCATION=/usr/autodesk/maya2015-x64
  
 pushd $SIPDIR
 $MAYA_LOCATION/bin/mayapy ./configure.py

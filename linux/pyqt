@@ -4,7 +4,7 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/usr/autodesk/maya2014-x64
+export MAYA_LOCATION=/usr/autodesk/maya2015-x64
 export QTDIR=$MAYA_LOCATION
 export QMAKESPEC=$QTDIR/mkspecs/linux-g++-64
 export INCDIR_QT=$MAYA_LOCATION/include/Qt
@@ -12,15 +12,15 @@ export LIBDIR_QT=$QTDIR/lib
  
 if [ ! -f $QMAKESPEC/qmake.conf ];
 then
-  echo "You need to install qt-4.8.2-mkspecs.tar.gz in $QTDIR/mkspecs !"
+  echo "You need to install qt-4.8.5-mkspecs.tar.gz in $QTDIR/mkspecs !"
   exit
 fi
 if [ ! -f $INCDIR_QT/QtCore/qdir.h ];
 then
-  echo "You need to uncompress $MAYA_LOCATION/include/qt-4.8.2-include.tar.gz in $INCDIR_QT !"
+  echo "You need to uncompress $MAYA_LOCATION/include/qt-4.8.5-include.tar.gz in $INCDIR_QT !"
   exit
 fi
-# qt.conf - /Applications/Autodesk/maya2014/Maya.app/Contents/Resources
+# qt.conf - /Applications/Autodesk/maya2015/Maya.app/Contents/Resources
 if [ ! -f $QTDIR/bin/qt.conf ];
 then
   echo "You need to copy $QTDIR/Resources/qt.conf in $QTDIR/bin !"
@@ -34,8 +34,8 @@ then
   exit
 fi
  
-export SIPDIR=$MAYAQTBUILD/sip-4.14.5
-export PYQTDIR=$MAYAQTBUILD/PyQt-x11-gpl-4.10
+export SIPDIR=$MAYAQTBUILD/sip-4.15.5
+export PYQTDIR=$MAYAQTBUILD/PyQt-x11-gpl-4.10.4
  
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
