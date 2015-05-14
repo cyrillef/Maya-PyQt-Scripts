@@ -1,9 +1,16 @@
-#!/bin/bash
-
-QTDIR=/usr/local/Trolltech/Qt-4.7.1/
-
-pushd sip-4.13.3
-/usr/autodesk/maya2013-x64/bin/mayapy ./configure.py
+#!/usr/bin/env bash
+ 
+MAYAQTBUILD="`dirname \"$0\"`" # Relative
+export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
+pushd $MAYAQTBUILD
+ 
+export SIPDIR=$MAYAQTBUILD/sip-4.14.5
+export MAYA_LOCATION=/usr/autodesk/maya2014-x64
+ 
+pushd $SIPDIR
+$MAYA_LOCATION/bin/mayapy ./configure.py
 make
 sudo make install
+popd
+
 popd
