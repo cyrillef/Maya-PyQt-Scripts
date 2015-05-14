@@ -2,7 +2,17 @@
 Scripts to easily build PyQt for Maya
 
 
+## Maya 2015
+Maya 2015 also includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2015.
+
+You can find more explanations about building PyQt and instructions about using these scripts on the blog at:
+
+http://around-the-corner.typepad.com/adn/2014/04/building-sip-and-pyqt-for-maya-2015.html
+
+
 ## Maya 2014
+You can find the scripts used for building Qt, PyQt, [here](https://github.com/cyrillef/Maya-PyQt-Scripts/releases/tag/v2014.0).
+
 Maya 2014 is shipping with PySide, therefore there is no more need to build PySide.
 
 libxml, openSSL, OpenAL, python2.7, qt-4.8.2-64, and tbb are also coming by default in the Maya include and lib folder, so unless you have a very 
