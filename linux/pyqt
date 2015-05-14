@@ -7,3 +7,4 @@ pushd PyQt-x11-gpl-4.9.4
 make -j4
 sudo make install
 popd
+

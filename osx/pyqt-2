@@ -13,3 +13,4 @@ sudo make install
 for mod in phonon QtCore QtDeclarative QtDesigner QtDesignerComponents QtGui QtHelp QtMultimedia QtNetwork QtOpenGL QtScript QtScriptTools QtSql QtSvg QtWebKit QtXml QtXmPatterns; do sudo find /Applications/Autodesk/maya2013/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PyQt4 -name "*so" -exec install_name_tool -change ${mod}.framework/Versions/4/{mod} @executable_path/${mod} {} \;; done;
 
 popd
+
