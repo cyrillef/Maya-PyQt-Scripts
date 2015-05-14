@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+ 
+export MYHOME=~
+export DOCS=$MYHOME
+export MAYA_LOCATION=/Applications/Autodesk/maya2013
+export PYTHON_SITE=$MAYA_LOCATION/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages
+ 
+# Config shiboken / PySide
+export SHIBOKEN=$DOCS/shiboken-1.1.2/_output/lib
+export PYSIDE=$DOCS/pyside-qt4.8+1.1.2/_output/lib
+ 
+cd $PYTHON_SITE
+cp $SHIBOKEN/libshiboken-python2.6.1.1.2.dylib .
+ln -s libshiboken-python2.6.1.1.2.dylib libshiboken-python2.6.1.1.dylib
+ln -s libshiboken-python2.6.1.1.dylib libshiboken-python2.6.dylib
+cp $SHIBOKEN/python2.6/site-packages/shiboken.so .
+ 
+mkdir PySide
+cd PySide
+ 
+cp $SHIBOKEN/libshiboken-python2.6.1.1.2.dylib .
+ln -s libshiboken-python2.6.1.1.2.dylib libshiboken-python2.6.1.1.dylib
+ln -s libshiboken-python2.6.1.1.dylib libshiboken-python2.6.dylib
+ 
+cp $PYSIDE/libpyside-python2.6.1.1.2.dylib .
+ln -s libpyside-python2.6.1.1.2.dylib libpyside-python2.6.1.1.dylib
+ln -s libpyside-python2.6.1.1.dylib libpyside-python2.6.dylib
+ 
+cp $PYSIDE/python2.6/site-packages/PySide/* .
+ 
+# The following 4 lines are one single line each to execute properly
+for mod in QtCore QtDeclarative QtDesigner QtDesignerComponents QtGui QtHelp QtMultimedia QtNetwork QtOpenGL QtScript QtScriptTools QtSql QtSvg QtWebKit QtXml QtXmlPatterns phonon; do find /Applications/Autodesk/maya2013/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide -name "*.so" -exec install_name_tool -change ${mod}.framework/Versions/4/${mod} @executable_path/${mod} {} \;;done;
+ 
+for mod in QtCore QtDeclarative QtDesigner QtDesignerComponents QtGui QtHelp QtMultimedia QtNetwork QtOpenGL QtScript QtScriptTools QtSql QtSvg QtWebKit QtXml QtXmlPatterns phonon; do find /Applications/Autodesk/maya2013/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide -name "*.dylib" -exec install_name_tool -change ${mod}.framework/Versions/4/${mod} @executable_path/${mod} {} \;;done;
+ 
+for mod in libpyside-python2.6.1.1.dylib libshiboken-python2.6.1.1.dylib ; do find /Applications/Autodesk/maya2013/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide -name "*.so" -exec install_name_tool -change ${mod} @executable_path/../Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide/${mod} {} \;;done;
+ 
+for mod in libpyside-python2.6.1.1.dylib libshiboken-python2.6.1.1.dylib ; do find /Applications/Autodesk/maya2013/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide -name "*.dylib" -exec install_name_tool -change ${mod} @executable_path/../Frameworks/Python.framework/Versions/Current/lib/python2.6/site-packages/PySide/${mod} {} \;;done;

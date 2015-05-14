@@ -1,0 +1,35 @@
+#!/bin/bash
+
+export CMAKE=~/cmake/bin/cmake
+export QTDIR=/usr/local/Trolltech/Qt-4.7.1
+export QMAKE=$QTDIR/bin/qmake
+export MAYA_LOCATION=/usr/autodesk/maya2013-x64
+export PYTHON_EXEC=$MAYA_LOCATION/bin/mayapy
+export PYTHON_INC=$MAYA_LOCATION/include/python2.6
+export PYTHON_LIB=$MAYA_LOCATION/lib/libpython2.6.so
+export CMAKE_C_COMPILER=/opt/gcc412/bin/gcc412
+export CMAKE_CXX_COMPILER=/opt/gcc412/bin/g++412
+
+pushd shiboken-1.1.2
+
+mkdir _output
+mkdir _build
+pushd _build
+
+$CMAKE -DQT_QMAKE_EXECUTABLE=$QMAKE -DBUILD_TESTS=False -DPYTHON_EXECUTABLE=$PYTHON_EXEC -DPYTHON_INCLUDE_DIR=$PYTHON_INC -DPYTHON_LIBRARY=$PYTHON_LIB -DCMAKE_BUILD_TYPE=Release -DENABLE_ICECC=0 -DCMAKE_INSTALL_PREFIX=~/shiboken-1.1.2/_output -DCMAKE_C_COMPILER=$CMAKE_C_COMPILER -DCMAKE_CXX_COMPILER=$CMAKE_CXX_COMPILER ..
+
+make
+sudo make install/fast
+
+pushd $MAYA_LOCATION/lib/python2.6/site-packages
+cp ~/shiboken-1.1.2/_output/lib/libshiboken-python2.6.so.1.1.2 .
+ln -s libshiboken-python2.6.so.1.1.2 libshiboken-python2.6.so.1.1
+ln -s libshiboken-python2.6.so.1.1 libshiboken-python2.6.so
+cp ~/shiboken-1.1.2/_output/lib/python2.6/site-packages/shiboken.so .
+popd
+
+sudo echo "/usr/autodesk/maya2013-x64/lib/python2.6/site-packages" > /etc/ld.so.conf.d/shiboken.conf
+sudo ldconfig
+
+popd
+popd

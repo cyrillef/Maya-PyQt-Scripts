@@ -1,0 +1,9 @@
+#!/bin/bash
+
+QTDIR=/usr/local/Trolltech/Qt-4.7.1/
+
+pushd sip-4.13.3
+/usr/autodesk/maya2013-x64/bin/mayapy ./configure.py
+make
+sudo make install
+popd

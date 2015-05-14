@@ -1,0 +1,20 @@
+#!/bin/bash
+
+export CMAKE=~/cmake/CMake-2.8.9.app/Contents/bin/cmake
+export QTDIR=~/qt-4.7.1
+export QMAKE=$QTDIR/bin/qmake
+export SHIBOKEN_DIR=~/shiboken-1.1.2/_output
+
+pushd pyside-qt4.8+1.1.2
+
+mkdir _output
+mkdir _build
+pushd _build
+
+$CMAKE -DQT_QMAKE_EXECUTABLE=$QMAKE -DBUILD_TESTS=False -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/Developer/SDKs/MacOSX10.6.sdk -DShiboken_DIR=$SHIBOKEN_DIR -DCMAKE_INSTALL_PREFIX=~/pyside-qt4.8+1.1.2/_output -DALTERNATE_QT_INCLUDE_DIR=$QTDIR/include ..
+
+make
+sudo make install
+
+popd
+popd

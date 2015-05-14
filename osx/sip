@@ -1,0 +1,9 @@
+#!/bin/bash
+
+QTDIR=~/qt-4.7.1
+
+pushd sip-4.13.3
+/Applications/Autodesk/maya2013/Maya.app/Contents/bin/mayapy ./configure.py -arch=x86_64
+make
+sudo make install
+popd

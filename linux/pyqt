@@ -1,0 +1,9 @@
+#!/bin/bash
+
+QTDIR=/usr/local/Trolltech/Qt-4.7.1/
+
+pushd PyQt-x11-gpl-4.9.4
+/usr/autodesk/maya2013-x64/bin/mayapy configure.py -q /usr/local/Trolltech/Qt-4.7.1/bin/qmake
+make -j4
+sudo make install
+popd
