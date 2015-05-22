@@ -4,38 +4,44 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/usr/autodesk/maya2015-x64
+export MAYA_LOCATION=/usr/autodesk/maya2016-x64
 export QTDIR=$MAYA_LOCATION
 export QMAKESPEC=$QTDIR/mkspecs/linux-g++-64
 export INCDIR_QT=$MAYA_LOCATION/include/Qt
 export LIBDIR_QT=$QTDIR/lib
- 
+
+error=0
 if [ ! -f $QMAKESPEC/qmake.conf ];
 then
-  echo "You need to install qt-4.8.5-mkspecs.tar.gz in $QTDIR/mkspecs !"
-  exit
+  echo "You need to install qt-4.8.6-mkspecs.tar.gz in $QTDIR/mkspecs !"
+  error=1
 fi
 if [ ! -f $INCDIR_QT/QtCore/qdir.h ];
 then
-  echo "You need to uncompress $MAYA_LOCATION/include/qt-4.8.5-include.tar.gz in $INCDIR_QT !"
-  exit
+  echo "You need to uncompress $MAYA_LOCATION/include/qt-4.8.6-include.tar.gz in $INCDIR_QT !"
+  error=1
 fi
-# qt.conf - /Applications/Autodesk/maya2015/Maya.app/Contents/Resources
+# qt.conf - $QTDIR/bin/qt.conf
 if [ ! -f $QTDIR/bin/qt.conf ];
 then
   echo "You need to copy $QTDIR/Resources/qt.conf in $QTDIR/bin !"
-  exit
+  error=1
 fi
  
 test=`grep "Headers=../include/Qt" $QTDIR/bin/qt.conf`
 if [ -z "$test" ];
 then
   echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=../include/Qt'"
-  exit
+  error=1
+fi
+
+if [ $error -eq 1 ];
+then
+    exit
 fi
  
-export SIPDIR=$MAYAQTBUILD/sip-4.15.5
-export PYQTDIR=$MAYAQTBUILD/PyQt-x11-gpl-4.10.4
+export SIPDIR=$MAYAQTBUILD/sip-4.16.7
+export PYQTDIR=$MAYAQTBUILD/PyQt-x11-gpl-4.11.3
  
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
