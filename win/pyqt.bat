@@ -22,7 +22,7 @@ pushd %PYQTDIR%
 pushd pylupdate
 del moc_translator.cpp 2> nul
 del moc_translator.obj 2> nul
-m:\bin\moc.exe -o moc_translator.cpp translator.h
+%QTDIR%\bin\moc.exe -o moc_translator.cpp translator.h
 popd
 
 "%MAYA_LOCATION%\bin\mayapy" configure.py -p %QMAKESPEC% LIBDIR_QT="%QTDIR%\lib" INCDIR_QT="%QTDIR%\include\Qt" MOC="%QTDIR%\bin\moc.exe" -w --no-designer-plugin
