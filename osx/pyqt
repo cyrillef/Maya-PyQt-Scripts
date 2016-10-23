@@ -4,7 +4,7 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/Applications/Autodesk/maya2016
+export MAYA_LOCATION=/Applications/Autodesk/maya2016.5
 export QTDIR=$MAYA_LOCATION/Maya.app/Contents
 export QMAKESPEC=$QTDIR/mkspecs/macx-g++
 export INCDIR_QT=$MAYA_LOCATION/devkit/include/Qt
@@ -83,8 +83,8 @@ fi
 export DYLD_LIBRARY_PATH=$QTDIR/MacOS
 export DYLD_FRAMEWORK_PATH=$QTDIR/Frameworks
  
-export SIPDIR=$MAYAQTBUILD/sip-4.16.7
-export PYQTDIR=$MAYAQTBUILD/PyQt-mac-gpl-4.11.3
+export SIPDIR=$MAYAQTBUILD/sip-4.18
+export PYQTDIR=$MAYAQTBUILD/PyQt-mac-gpl-4.11.4
  
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH

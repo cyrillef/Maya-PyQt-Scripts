@@ -4,7 +4,7 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export SIPDIR=$MAYAQTBUILD/sip-4.16.7
+export SIPDIR=$MAYAQTBUILD/sip-4.18
 export MAYA_LOCATION=/Applications/Autodesk/maya2016
  
 pushd $SIPDIR
