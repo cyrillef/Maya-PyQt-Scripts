@@ -2,6 +2,14 @@
 Scripts to easily build PyQt for Maya
 
 
+## Maya 2016.5
+Maya 2016.5 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2016.5
+
+You can find more explanations about building PyQt and instructions about using these scripts on the blog at:
+
+http://around-the-corner.typepad.com/adn/2015/05/building-sip-and-pyqt-for-maya-2016.html
+
+
 ## Maya 2016
 Maya 2016 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2016.
 
