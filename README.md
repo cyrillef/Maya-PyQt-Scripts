@@ -7,7 +7,7 @@ Maya 2016.5 includes most of the tools we need to build PyQt without the need of
 
 You can find more explanations about building PyQt and instructions about using these scripts on the blog at:
 
-http://around-the-corner.typepad.com/adn/2015/05/building-sip-and-pyqt-for-maya-2016.html
+http://around-the-corner.typepad.com/adn/2016/10/building-sip-and-pyqt-for-maya-20165.html
 
 
 ## Maya 2016
