@@ -21,7 +21,7 @@ then
   echo "You need to uncompress $MAYA_LOCATION/devkit/include/qt-4.8.6-include.tar.gz in $INCDIR_QT !"
   error=1
 fi
-# qt.conf - /Applications/Autodesk/maya2016/Maya.app/Contents/Resources
+# qt.conf - /Applications/Autodesk/maya2016.5/Maya.app/Contents/Resources
 if [ ! -f $QTDIR/bin/qt.conf ];
 then
   echo "You need to copy $QTDIR/Resources/qt.conf in $QTDIR/bin !"
