@@ -4,24 +4,24 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/Applications/Autodesk/maya2016.5
+export MAYA_LOCATION=/Applications/Autodesk/maya2017
 export QTDIR=$MAYA_LOCATION/Maya.app/Contents
-export QMAKESPEC=$QTDIR/mkspecs/macx-g++
+export QMAKESPEC=$QTDIR/mkspecs/macx-clang
 export INCDIR_QT=$MAYA_LOCATION/devkit/include/Qt
 export LIBDIR_QT=$QTDIR/MacOS
 
 error=0
 if [ ! -f $QMAKESPEC/qmake.conf ];
 then
-  echo "You need to install qt-4.8.6-64-mkspecs.tar.gz in $QTDIR/mkspecs !"
+  echo "You need to install qt-5.6.1-mkspecs.tar.gz in $QTDIR/mkspecs !"
   error=1
 fi
 if [ ! -f $INCDIR_QT/QtCore/qdir.h ];
 then
-  echo "You need to uncompress $MAYA_LOCATION/devkit/include/qt-4.8.6-include.tar.gz in $INCDIR_QT !"
+  echo "You need to uncompress $MAYA_LOCATION/devkit/include/qt-5.6.1-include.tar.gz in $INCDIR_QT !"
   error=1
 fi
-# qt.conf - /Applications/Autodesk/maya2016.5/Maya.app/Contents/Resources
+# qt.conf - /Applications/Autodesk/maya2017/Maya.app/Contents/Resources
 if [ ! -f $QTDIR/bin/qt.conf ];
 then
   echo "You need to copy $QTDIR/Resources/qt.conf in $QTDIR/bin !"
@@ -59,21 +59,15 @@ then
   error=1
 fi
  
-for mod in Core Declarative Designer DesignerComponents Gui Help Multimedia Network OpenGL Script ScriptTools Sql Svg WebKit Xml XmlPatterns
+for mod in Core Designer DesignerComponents Gui Help Multimedia Network OpenGL Script ScriptTools Sql Svg WebKit Xml XmlPatterns
 do
-  if [ ! -f $QTDIR/MacOS/libQt${mod}.dylib ];
+  if [ ! -f $QTDIR/MacOS/libQt5${mod}.dylib ];
   then
-    echo "You need to copy a fake Qt$mod dylib - cp $QTDIR/MacOS/Qt$mod $QTDIR/MacOS/libQt${mod}.dylib !"
-    #cp $QTDIR/MacOS/Qt$mod $QTDIR/MacOS/libQt${mod}.dylib
+    echo "You need to copy a fake Qt5$mod dylib - cp $QTDIR/MacOS/Qt5$mod $QTDIR/MacOS/libQt5${mod}.dylib !"
+    #cp $QTDIR/MacOS/Qt5$mod $QTDIR/MacOS/libQt5${mod}.dylib
     error=1
   fi
 done
-if [ ! -f $QTDIR/MacOS/libphonon.dylib ];
-then
-  echo "You need to copy a fake phonon dylib - cp $QTDIR/MacOS/phonon $QTDIR/MacOS/libphonon.dylib !"
-  #cp $QTDIR/MacOS/phonon $QTDIR/MacOS/libphonon.dylib
-  error=1
-fi
 
 if [ $error -eq 1 ];
 then
@@ -83,12 +77,15 @@ fi
 export DYLD_LIBRARY_PATH=$QTDIR/MacOS
 export DYLD_FRAMEWORK_PATH=$QTDIR/Frameworks
  
-export SIPDIR=$MAYAQTBUILD/sip-4.18
-export PYQTDIR=$MAYAQTBUILD/PyQt-mac-gpl-4.11.4
+export SIPDIR=$MAYAQTBUILD/sip-4.18.1
+export PYQTDIR=$MAYAQTBUILD/PyQt5_gpl-5.7
  
+export SIP_EXE=$QTDIR/Frameworks/Python.framework/Versions/2.7/bin/sip
+export SIP_INCLUDE=$QTDIR/Frameworks/Python.framework/Versions/2.7/include/python2.7
+
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
-$QTDIR/bin/mayapy ./configure.py --use-arch x86_64 LIBDIR_QT=$LIBDIR_QT INCDIR_QT=$INCDIR_QT MOC=$QTDIR/bin/moc -w --no-designer-plugin -g
+$QTDIR/bin/mayapy ./configure.py LIBDIR_QT=$LIBDIR_QT INCDIR_QT=$INCDIR_QT MOC=$QTDIR/bin/moc --sip=$SIP_EXE --sip-incdir=$SIP_INCLUDE -w --no-designer-plugin 
 make -j 8
 sudo make install
 popd
