@@ -34,7 +34,7 @@ fi
 test=`grep 'Headers=$(DEVKIT_LOCATION)/include/Qt' $QTDIR/bin/qt.conf`
 if [ -z "$test" ];
 then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=$(DEVKIT_LOCATION)include/Qt'"
+  echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=$(DEVKIT_LOCATION)/include/Qt'"
   error=1
 fi
 
