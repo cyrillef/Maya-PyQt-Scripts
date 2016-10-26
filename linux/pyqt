@@ -4,8 +4,9 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/usr/autodesk/maya2016.5
+export MAYA_LOCATION=/usr/autodesk/maya2017
 export QTDIR=$MAYA_LOCATION
+export DEVKIT_LOCATION=$MAYA_LOCATION
 export QMAKESPEC=$QTDIR/mkspecs/linux-g++-64
 export INCDIR_QT=$MAYA_LOCATION/include/Qt
 export LIBDIR_QT=$QTDIR/lib
@@ -13,12 +14,12 @@ export LIBDIR_QT=$QTDIR/lib
 error=0
 if [ ! -f $QMAKESPEC/qmake.conf ];
 then
-  echo "You need to install qt-4.8.6-mkspecs.tar.gz in $QTDIR/mkspecs !"
+  echo "You need to install qt-5.6.1-mkspecs.tar.gz in $QTDIR/mkspecs !"
   error=1
 fi
 if [ ! -f $INCDIR_QT/QtCore/qdir.h ];
 then
-  echo "You need to uncompress $MAYA_LOCATION/include/qt-4.8.6-include.tar.gz in $INCDIR_QT !"
+  echo "You need to uncompress $MAYA_LOCATION/include/qt-5.6.1-include.tar.gz in $INCDIR_QT !"
   error=1
 fi
 # qt.conf - $QTDIR/bin/qt.conf
@@ -27,8 +28,10 @@ then
   echo "You need to copy $QTDIR/Resources/qt.conf in $QTDIR/bin !"
   error=1
 fi
- 
-test=`grep "Headers=../include/Qt" $QTDIR/bin/qt.conf`
+
+# The grep string should be in single quote('), if it is in double quote (""), 
+# shell will expand the variable, hence the intension of the below grep will fail 
+test=`grep 'Headers=$(DEVKIT_LOCATION)/include/Qt' $QTDIR/bin/qt.conf`
 if [ -z "$test" ];
 then
   echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=../include/Qt'"
@@ -40,12 +43,12 @@ then
     exit
 fi
  
-export SIPDIR=$MAYAQTBUILD/sip-4.18
-export PYQTDIR=$MAYAQTBUILD/PyQt-x11-gpl-4.11.4
+export SIPDIR=$MAYAQTBUILD/sip-4.18.1
+export PYQTDIR=$MAYAQTBUILD/PyQt5_gpl-5.7
  
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
-$QTDIR/bin/mayapy ./configure.py LIBDIR_QT=$LIBDIR_QT INCDIR_QT=$INCDIR_QT MOC=$QTDIR/bin/moc -w --no-designer-plugin -g
+$QTDIR/bin/mayapy ./configure.py LIBDIR_QT=$LIBDIR_QT INCDIR_QT=$INCDIR_QT MOC=$QTDIR/bin/moc -w --no-designer-plugin 
 make -j 8
 sudo make install
 popd
