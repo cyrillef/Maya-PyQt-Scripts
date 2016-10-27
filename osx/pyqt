@@ -7,7 +7,7 @@ pushd $MAYAQTBUILD
 export MAYA_LOCATION=/Applications/Autodesk/maya2017
 export QTDIR=$MAYA_LOCATION/Maya.app/Contents
 export QMAKESPEC=$QTDIR/mkspecs/macx-clang
-export INCDIR_QT=$MAYA_LOCATION/devkit/include/Qt
+export INCDIR_QT=$MAYA_LOCATION/include/Qt
 export LIBDIR_QT=$QTDIR/MacOS
 
 error=0
@@ -28,46 +28,24 @@ then
   error=1
 fi
  
-test=`grep "Data=../.." $QTDIR/bin/qt.conf`
-if [ ! -z "$test" ];
+test=`grep 'Data=$(DEVKIT_LOCATION)' $QTDIR/bin/qt.conf`
+if [ -z "$test" ];
 then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Data=..'"
+  echo "You need to edit $QTDIR/bin/qt.conf to use 'Data=\$(DEVKIT_LOCATION)'"
   error=1
 fi
-test=`grep "Headers=../../include" $QTDIR/bin/qt.conf`
-if [ ! -z "$test" ];
+test=`grep 'Headers=$(DEVKIT_LOCATION)/include/Qt' $QTDIR/bin/qt.conf`
+if [ -z "$test" ];
 then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=../../../devkit/include/Qt'"
+  echo "You need to edit $QTDIR/bin/qt.conf to use 'Headers=\$(DEVKIT_LOCATION)/include/Qt'"
   error=1
 fi
-test=`grep "Libraries=../lib" $QTDIR/bin/qt.conf`
-if [ ! -z "$test" ];
+test=`grep 'Libraries=$(MAYA_LOCATION)/MacOS' $QTDIR/bin/qt.conf`
+if [ -z "$test" ];
 then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Libraries =../MacOS'"
+  echo "You need to edit $QTDIR/bin/qt.conf to use 'Libraries=\$(MAYA_LOCATION)/MacOS'"
   error=1
 fi
-test=`grep "Plugins = qt-plugins" $QTDIR/bin/qt.conf`
-if [ ! -z "$test" ];
-then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Plugins=../qt-plugins'"
-  error=1
-fi
-test=`grep "Translations = qt-translations" $QTDIR/bin/qt.conf`
-if [ ! -z "$test" ];
-then
-  echo "You need to edit $QTDIR/bin/qt.conf to use 'Translations=../qt-translations'"
-  error=1
-fi
- 
-for mod in Core Designer DesignerComponents Gui Help Multimedia Network OpenGL Script ScriptTools Sql Svg WebKit Xml XmlPatterns
-do
-  if [ ! -f $QTDIR/MacOS/libQt5${mod}.dylib ];
-  then
-    echo "You need to copy a fake Qt5$mod dylib - cp $QTDIR/MacOS/Qt5$mod $QTDIR/MacOS/libQt5${mod}.dylib !"
-    #cp $QTDIR/MacOS/Qt5$mod $QTDIR/MacOS/libQt5${mod}.dylib
-    error=1
-  fi
-done
 
 if [ $error -eq 1 ];
 then
