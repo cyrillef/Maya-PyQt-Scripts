@@ -4,11 +4,12 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/Applications/Autodesk/maya2017
-export QTDIR=$MAYA_LOCATION/Maya.app/Contents
-export QMAKESPEC=$QTDIR/mkspecs/macx-clang
-export INCDIR_QT=$MAYA_LOCATION/include/Qt
-export LIBDIR_QT=$QTDIR/MacOS
+export MAYA_LOCATION=/Applications/Autodesk/maya2017/Maya.app/Contents
+export DEVKIT_LOCATION=/Applications/Autodesk/maya2017
+export QTDIR=$DEVKIT_LOCATION/devkit
+export QMAKESPEC=$DEVKIT_LOCATION/mkspecs/macx-clang
+export INCDIR_QT=$DEVKIT_LOCATION/include/Qt
+export LIBDIR_QT=$MAYA_LOCATION/MacOS
 
 error=0
 if [ ! -f $QMAKESPEC/qmake.conf ];
@@ -52,18 +53,29 @@ then
     exit
 fi
  
-export DYLD_LIBRARY_PATH=$QTDIR/MacOS
-export DYLD_FRAMEWORK_PATH=$QTDIR/Frameworks
+export DYLD_LIBRARY_PATH=$MAYA_LOCATION/MacOS
+export DYLD_FRAMEWORK_PATH=$MAYA_LOCATION/Frameworks
  
 export SIPDIR=$MAYAQTBUILD/sip-4.18.1
 export PYQTDIR=$MAYAQTBUILD/PyQt5_gpl-5.7
  
-export SIP_EXE=$QTDIR/Frameworks/Python.framework/Versions/2.7/bin/sip
-export SIP_INCLUDE=$QTDIR/Frameworks/Python.framework/Versions/2.7/include/python2.7
+export SIP_EXE=$MAYA_LOCATION/Frameworks/Python.framework/Versions/2.7/bin/sip
+export SIP_INCLUDE=$MAYA_LOCATION/Frameworks/Python.framework/Versions/2.7/include/python2.7
 
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
-$QTDIR/bin/mayapy ./configure.py LIBDIR_QT=$LIBDIR_QT INCDIR_QT=$INCDIR_QT MOC=$QTDIR/bin/moc --sip=$SIP_EXE --sip-incdir=$SIP_INCLUDE -w --no-designer-plugin 
+
+echo 
+echo Environment
+echo -----------
+set
+echo -----------
+echo QT Settings
+echo -----------
+qmake -query
+echo -----------
+echo
+$MAYA_LOCATION/bin/mayapy ./configure.py QMAKE_MAC_SDK=macosx10.9 QMAKE_RPATHDIR+=$LIBDIR_QT --sip=$SIP_EXE --sip-incdir=$SIP_INCLUDE -w --no-designer-plugin 
 make -j 8
 sudo make install
 popd
