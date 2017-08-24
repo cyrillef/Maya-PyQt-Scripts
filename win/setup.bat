@@ -1,9 +1,9 @@
 @echo off
 
-set MAYAVERSION=2017
+set MAYAVERSION=2018
 set ADSKQTVERSION=5.6.1
-set SIPVERSION=4.18.1
-set PYQTVERSION=5.7
+set SIPVERSION=4.19.3
+set PYQTVERSION=5.9
 set MAYADRIVE=m:
 set BUILDDRIVE=v:
 
@@ -24,8 +24,8 @@ rem set ADSKQTDIR=%BUILDDRIVE%\qt-%ADSKQTVERSION%
 set QTDIR=%MAYA_LOCATION%
 
 set PATH=%QTDIR%\bin;%PATH%
-set MSVC_VERSION=2012
-set MSVC_DIR=C:\Program Files (x86)\Microsoft Visual Studio 11.0
+set MSVC_VERSION=2015
+set MSVC_DIR=C:\Program Files (x86)\Microsoft Visual Studio 14.0
 set QMAKESPEC=%QTDIR%\mkspecs\win32-msvc%MSVC_VERSION%
 set _QMAKESPEC_=win32-msvc%MSVC_VERSION%
 

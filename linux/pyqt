@@ -4,7 +4,7 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-export MAYA_LOCATION=/usr/autodesk/maya2017
+export MAYA_LOCATION=/usr/autodesk/maya2018
 export QTDIR=$MAYA_LOCATION
 export DEVKIT_LOCATION=$MAYA_LOCATION
 export QMAKESPEC=$QTDIR/mkspecs/linux-g++-64
@@ -43,8 +43,8 @@ then
     exit
 fi
  
-export SIPDIR=$MAYAQTBUILD/sip-4.18.1
-export PYQTDIR=$MAYAQTBUILD/PyQt5_gpl-5.7
+export SIPDIR=$MAYAQTBUILD/sip-4.19.3
+export PYQTDIR=$MAYAQTBUILD/PyQt5_gpl-5.9
  
 pushd $PYQTDIR
 export PATH=$QTDIR/bin:$PATH
