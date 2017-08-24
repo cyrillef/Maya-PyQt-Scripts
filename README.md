@@ -1,6 +1,9 @@
 # Maya-PyQt-Scripts
 Scripts to easily build PyQt for Maya
 
+## Maya 2018
+Maya 2018 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2018
+
 ## Maya 2017
 Maya 2017 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2017
 
