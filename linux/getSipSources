@@ -4,9 +4,9 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
  
-wget -c --no-check-certificate https://sourceforge.net/projects/pyqt/files/sip/sip-4.18.1/sip-4.18.1.tar.gz
+wget -c --no-check-certificate https://sourceforge.net/projects/pyqt/files/sip/sip-4.19.13/sip-4.19.13.tar.gz
 
-tar -zxf sip-4.18.1.tar.gz
-rm -rf sip-4.18.1.tar.gz
+tar -zxf sip-4.19.13.tar.gz
+rm -rf sip-4.19.13.tar.gz
 
 popd
