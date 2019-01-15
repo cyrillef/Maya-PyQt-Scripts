@@ -4,9 +4,9 @@ MAYAQTBUILD="`dirname \"$0\"`" # Relative
 export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
 pushd $MAYAQTBUILD
 
-wget -c --no-check-certificate https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.7/PyQt5_gpl-5.7.tar.gz
+wget -c --no-check-certificate https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.11.3/PyQt5_gpl-5.11.3.tar.gz
 
-tar -zxf PyQt5_gpl-5.7.tar.gz
-rm -rf PyQt5_gpl-5.7.tar.gz
+tar -zxf PyQt5_gpl-5.11.3.tar.gz
+rm -rf PyQt5_gpl-5.11.3.tar.gz
  
 popd

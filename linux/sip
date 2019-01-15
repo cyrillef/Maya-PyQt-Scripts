@@ -8,7 +8,7 @@ export SIPDIR=$MAYAQTBUILD/sip-4.19.13
 export MAYA_LOCATION=/usr/autodesk/maya2019
  
 pushd $SIPDIR
-$MAYA_LOCATION/bin/mayapy ./configure.py --sip-module PyQt5.sip --no-tools
+$MAYA_LOCATION/bin/mayapy ./configure.py --sip-module PyQt5.sip 
 make
 sudo make install
 popd
