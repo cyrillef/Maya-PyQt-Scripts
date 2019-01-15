@@ -4,6 +4,10 @@ Scripts to easily build PyQt for Maya
 ## Maya 2019
 Maya 2019 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2019. There are some changes since PyQt5.11, you may want to check out the new guide if you are compiling with the latest PyQt5.
 
+You can find more explanations about building PyQt and instructions about using these scripts on the blog at:
+
+https://around-the-corner.typepad.com/adn/2019/01/how-to-build-pyqt5-for-autodesk-maya-2019.html
+
 ## Maya 2018
 Maya 2018 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2018
 
