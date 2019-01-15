@@ -8,6 +8,8 @@ You can find more explanations about building PyQt and instructions about using 
 
 https://around-the-corner.typepad.com/adn/2019/01/how-to-build-pyqt5-for-autodesk-maya-2019.html
 
+Thanks to Temujin2887 suggested that --no-designer-plugin could be removed since Maya 2018. If you need the QtDesigner plugin, please modify pyqt script file and remove this flag.
+
 ## Maya 2018
 Maya 2018 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2018
 
