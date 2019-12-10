@@ -1,5 +1,13 @@
 # Maya-PyQt-Scripts
 Scripts to easily build PyQt for Maya
+## Maya 2020
+
+Maya 2020 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2020. There are some changes in Maya 2020 and Qt 5.12.5, you may want to check out the new guide if you are going to compile it with Maya 2020.
+
+You can find more explanations about building PyQt and instructions about using these scripts on the blog at:
+
+https://around-the-corner.typepad.com/adn/2019/12/how-to-build-pyqt5-for-autodesk-maya-2020.html
+
 
 ## Maya 2019
 Maya 2019 includes most of the tools we need to build PyQt without the need of compiling Qt source & tools - so there is no need to rebuild Qt for Maya 2019. There are some changes since PyQt5.11, you may want to check out the new guide if you are compiling with the latest PyQt5.
@@ -74,9 +82,6 @@ and
 http://around-the-corner.typepad.com/adn/2012/10/building-qt-pyqt-pyside-for-maya-2013-part-2.html
 
 
-<br />
-<br />
-
 --------
 
 ## License
@@ -86,6 +91,8 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 
 ## Written by
 
-Cyrille Fauvel (Autodesk Developer Network)<br />
-http://www.autodesk.com/adn<br />
+Cyrille Fauvel (Autodesk Developer Network)
+Chengxi Li (Autodesk Developer Network)
+Lanh Hong (Autodesk Developer Network)
+http://www.autodesk.com/adn
 http://around-the-corner.typepad.com/<br />

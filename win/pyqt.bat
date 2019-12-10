@@ -4,11 +4,11 @@ if ["%MAYAPYQTBUILD%"]==[""] call "%XXX%setup.bat"
 
 set QMAKESPEC=%QTDIR%\mkspecs\%_QMAKESPEC_%
 if not exist "%QMAKESPEC%\qmake.conf" (
-	echo "You need to uncompress %MAYA_LOCATION%\mkspecs\qt-5.6.1-mkspecs.tar.gz !"
+	echo "You need to uncompress %MAYA_LOCATION%\mkspecs\qt_5.12.5_vc14-mkspecs.zip !"
 	goto end
 )
 if not exist "%MAYA_LOCATION%\include\Qt\QtCore\qdir.h" (
-	echo "You need to uncompress %MAYA_LOCATION%\include\qt-5.6.1-include.tar.gz in %MAYA_LOCATION%\include\Qt !"
+	echo "You need to uncompress %MAYA_LOCATION%\include\qt_5.12.5_vc14-include.zip in %MAYA_LOCATION%\include\Qt !"
 	goto end
 )
 findstr /L /C:"Headers=include/Qt" "%MAYA_LOCATION%\bin\qt.conf" >nul 2>&1
