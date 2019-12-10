@@ -14,12 +14,12 @@ export LIBDIR_QT=$QTDIR/lib
 error=0
 if [ ! -f $QMAKESPEC/qmake.conf ];
 then
-  echo "You need to install qt-5.6.1-mkspecs.tar.gz in $QTDIR/mkspecs !"
+  echo "You need to install qt-5.12.5-mkspecs.tar.gz in $QTDIR/mkspecs !"
   error=1
 fi
 if [ ! -f $INCDIR_QT/QtCore/qdir.h ];
 then
-  echo "You need to uncompress $MAYA_LOCATION/include/qt-5.6.1-include.tar.gz in $INCDIR_QT !"
+  echo "You need to uncompress $MAYA_LOCATION/include/qt-5.12.5-include.tar.gz in $INCDIR_QT !"
   error=1
 fi
 # qt.conf - $QTDIR/bin/qt.conf
