@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+ 
+MAYAQTBUILD="`dirname \"$0\"`" # Relative
+export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
+pushd $MAYAQTBUILD
+
+wget -c --no-check-certificate https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz
+
+tar -zxf PyQt5-5.13.2.tar.gz
+rm -rf PyQt5-5.13.2.tar.gz
+ 
+popd

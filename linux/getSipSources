@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+ 
+MAYAQTBUILD="`dirname \"$0\"`" # Relative
+export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
+pushd $MAYAQTBUILD
+ 
+wget -c --no-check-certificate https://www.riverbankcomputing.com/static/Downloads/sip/4.19.19/sip-4.19.19.tar.gz
+
+tar -zxf sip-4.19.19.tar.gz
+rm -rf sip-4.19.19.tar.gz
+
+popd

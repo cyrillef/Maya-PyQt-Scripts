@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+MAYAQTBUILD="`dirname \"$0\"`" # Relative
+export MAYAQTBUILD="`( cd \"$MAYAQTBUILD\" && pwd )`" # Absolutized and normalized
+pushd $MAYAQTBUILD
+ 
+export SIPDIR=$MAYAQTBUILD/sip-4.19.19
+export MAYA_LOCATION=/usr/autodesk/maya2020
+ 
+pushd $SIPDIR
+$MAYA_LOCATION/bin/mayapy ./configure.py --sip-module PyQt5.sip 
+make
+sudo make install
+popd
+
+popd
